@@ -19,18 +19,18 @@ class App.Views.EntriesIndex extends Backbone.View
     @collection.on 'reset', @render
     @collection.on 'add',   @appendEntry
 
-    @collection.reset $('#container').data('entries')
+    @collection.reset @$el.data('entries')
 
     @render()
 
   render: ->
-    $(@el).html @template()
+    @$el.html @template
     @collection.each @appendEntry
     @
 
   appendEntry: (entry) ->
     view = new App.Views.Entry(model: entry)
-    $('#entries').append view.render().el
+    @$('#entries').append view.render().el
         
   createEntry: (event) ->
     event.preventDefault()

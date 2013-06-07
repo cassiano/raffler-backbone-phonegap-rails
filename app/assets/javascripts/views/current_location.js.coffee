@@ -25,13 +25,13 @@ class App.Views.CurrentLocation extends Backbone.View
       navigationControlOptions:
         style: google.maps.NavigationControlStyle.SMALL
 
-    $(@el).show()
+    @$el.show()
 
-    map     = new google.maps.Map $(@el)[0], options
+    map     = new google.maps.Map @el, options
     marker  = new google.maps.Marker position: mapCoords, map: map, title: "You are here!"
 
   showPositionError: (error) ->
     alert "Code: #{error.code}\nMessage: #{error.message}"
 
-  lat: -> -22.884966400000003 # @position?.coords.latitude
-  lng: -> -47.0691925         # @position?.coords.longitude
+  lat: -> @position?.coords.latitude
+  lng: -> @position?.coords.longitude

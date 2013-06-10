@@ -1,5 +1,8 @@
 class EntriesController < ApplicationController
-  respond_to :json
+  # Force JSON format in order to work with Chrome's Ripple Emulator.
+  before_filter :force_json_format
+  
+  respond_to :json, :html
   
   def index
     respond_with Entry.all
@@ -19,5 +22,11 @@ class EntriesController < ApplicationController
   
   def destroy
     respond_with Entry.destroy(params[:id])
+  end
+  
+  private
+  
+  def force_json_format
+    request.format = :json
   end
 end

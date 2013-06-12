@@ -16,3 +16,6 @@
 
 # Ignore PhoneGap symlink
 /public/phonegap
+
+# Ignore Mac OS files
+.DS_Store

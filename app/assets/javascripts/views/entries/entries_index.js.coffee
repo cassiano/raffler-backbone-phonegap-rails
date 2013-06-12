@@ -4,8 +4,9 @@ class App.Views.EntriesIndex extends Backbone.View
   template: JST['entries/index']
   
   events:
-    'submit #new_entry': 'createEntry'
-    'click #draw': 'drawWinner'
+    'submit form#new_entry':  'createEntry'
+    'click  button#draw':     'drawWinner'
+    'click  a.delete_entry':  'deleteEntry'
   
   drawWinner: (event) ->
     event.preventDefault()
@@ -13,6 +14,8 @@ class App.Views.EntriesIndex extends Backbone.View
                 
   initialize: ->
     _.bindAll @
+    
+    # @modelViews = []
 
     @collection = new App.Collections.Entries
 
@@ -30,6 +33,7 @@ class App.Views.EntriesIndex extends Backbone.View
 
   appendEntry: (entry) ->
     view = new App.Views.Entry(model: entry)
+    # @modelViews.push view
     @$('#entries').append view.render().el
         
   createEntry: (event) ->
@@ -47,3 +51,20 @@ class App.Views.EntriesIndex extends Backbone.View
       
       for attribute, messages of errors
         alert "#{attribute} #{message}" for message in messages
+
+  deleteEntry: (event) ->
+    event.preventDefault()
+
+    # entryId = @_extractEntryId(event.target.id)
+    # view = @_findEntryView(entryId)
+    # view.model.destroy()
+
+    entryId = @_extractEntryId(event.target.id)
+    entry = @collection.get(entryId)
+    entry.destroy()
+
+  # _findEntryView: (entryId) ->
+  #   _.find @modelViews, (v) -> v.model.get('id') == entryId
+
+  _extractEntryId: (name) ->
+    parseInt /entry_(\d+)/.exec(name)[1]

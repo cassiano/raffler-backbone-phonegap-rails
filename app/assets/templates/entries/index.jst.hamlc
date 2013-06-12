@@ -1,0 +1,9 @@
+%h1 Raffler
+
+%form#new_entry
+  %input#new_entry_name(type='text' name='name')
+  %input(type='submit' value='Add')
+
+%ul#entries
+
+%button#draw Draw Winner

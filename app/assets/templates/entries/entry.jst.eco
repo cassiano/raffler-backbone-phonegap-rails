@@ -1,7 +1,0 @@
-<%= @entry.get('name') %>
-
-<a href='#' class='delete_entry' id='entry_<%= @entry.get('id') %>'>delete</a>
-
-<% if @entry.get('winner'): %>
-  <span class="winner">WINNER</span>
-<% end %>

@@ -1,0 +1,6 @@
+= @entry.get('name')
+
+%a.delete_entry[@entry](href='#') delete
+
+- if @entry.get('winner')
+  %span.winner WINNER

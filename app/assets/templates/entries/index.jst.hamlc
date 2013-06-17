@@ -1,9 +1,14 @@
-%h1 Raffler
+%div(data-role='header')
+  %h1 Raffler
 
-%form#new_entry
-  %input#new_entry_name(type='text' name='name')
-  %input(type='submit' value='Add')
+%div(data-role='content')
+  %form#new_entry
+    %input#new_entry_name(type='text' name='name')
+    %input(type='submit' value='Add')
 
-%ul#entries
+  %ul#entries(data-role='listview' data-inset='true' data-filter='true' data-filter-placeholder='Type in a name...')
 
-%button#draw Draw Winner
+  %button#draw Draw Winner
+
+%div(data-role='footer')
+  Copyright by Tagview Tecnologia

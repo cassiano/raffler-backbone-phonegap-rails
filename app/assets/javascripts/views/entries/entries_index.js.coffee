@@ -1,6 +1,4 @@
 class App.Views.EntriesIndex extends Backbone.View
-  el: '#container'
-  
   template: JST['entries/index']
   
   events:
@@ -22,12 +20,10 @@ class App.Views.EntriesIndex extends Backbone.View
     @listenTo @collection, 'reset', @render
     @listenTo @collection, 'add',   @appendEntry
 
-    @collection.reset @$el.data('entries')
-
-    @render()
+    @collection.fetch reset: true
 
   render: ->
-    @$el.html @template
+    @$el.html @template()
     @collection.each @appendEntry
     @
 
@@ -37,7 +33,9 @@ class App.Views.EntriesIndex extends Backbone.View
     @views.push view
     
     @$('#entries').append view.render().el
-        
+    
+    try @$('ul#entries').listview 'refresh'
+
   createEntry: (event) ->
     event.preventDefault()
 

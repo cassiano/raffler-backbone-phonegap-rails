@@ -2,17 +2,16 @@ class App.Views.Entry extends Backbone.View
   template: JST['entries/entry']
 
   tagName: 'li'
-
-  # events:
-  # #   'click': 'showEntry'
+  
+  # events: 
   #   'click a.delete_entry': 'delete'
-    
+  
   initialize: ->
     _.bindAll @
     
-    @model.on 'change:winner',  @render
-    @model.on 'highlight',      @highlightWinner
-    @model.on 'destroy',        @remove
+    @listenTo @model, 'change:winner',  @render
+    @listenTo @model, 'highlight',      @highlightWinner
+    @listenTo @model, 'remove',         @remove
     
   highlightWinner: ->
     $('.winner').removeClass 'highlight'
@@ -23,9 +22,6 @@ class App.Views.Entry extends Backbone.View
     @$el.html @template(entry: @model)
     @
 
-  # showEntry: ->
-  #   Backbone.history.navigate "entries/#{@model.get('id')}", true
-
-  # delete: (event) ->
-  #   event.preventDefault()
-  #   @model.destroy()
+  delete: (event) ->
+    event.preventDefault()
+    @model.destroy()

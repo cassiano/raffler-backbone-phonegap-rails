@@ -6,7 +6,7 @@ class App.Views.EntriesIndex extends Backbone.View
   events:
     'submit form#new_entry':  'createEntry'
     'click  button#draw':     'drawWinner'
-    'click  a.delete_entry':  'deleteEntry'
+    'click a.delete_entry':   'delete_entry'
   
   drawWinner: (event) ->
     event.preventDefault()
@@ -15,12 +15,12 @@ class App.Views.EntriesIndex extends Backbone.View
   initialize: ->
     _.bindAll @
     
-    # @modelViews = []
-
+    @views = []
+    
     @collection = new App.Collections.Entries
 
-    @collection.on 'reset', @render
-    @collection.on 'add',   @appendEntry
+    @listenTo @collection, 'reset', @render
+    @listenTo @collection, 'add',   @appendEntry
 
     @collection.reset @$el.data('entries')
 
@@ -33,7 +33,9 @@ class App.Views.EntriesIndex extends Backbone.View
 
   appendEntry: (entry) ->
     view = new App.Views.Entry(model: entry)
-    # @modelViews.push view
+    
+    @views.push view
+    
     @$('#entries').append view.render().el
         
   createEntry: (event) ->
@@ -51,20 +53,12 @@ class App.Views.EntriesIndex extends Backbone.View
       
       for attribute, messages of errors
         alert "#{attribute} #{message}" for message in messages
-
-  deleteEntry: (event) ->
+  
+  delete_entry: (event) ->
     event.preventDefault()
-
-    # entryId = @_extractEntryId(event.target.id)
-    # view = @_findEntryView(entryId)
-    # view.model.destroy()
-
-    entryId = @_extractEntryId(event.target.id)
-    entry = @collection.get(entryId)
-    entry.destroy()
-
-  # _findEntryView: (entryId) ->
-  #   _.find @modelViews, (v) -> v.model.get('id') == entryId
-
-  _extractEntryId: (name) ->
-    parseInt /entry_(\d+)/.exec(name)[1]
+    entryId = parseInt(/entry_(\d+)/.exec(event.target.id)[1])
+    
+    view = _.find @views, (v) -> v.model.get('id') == entryId
+    
+    view.delete event
+    

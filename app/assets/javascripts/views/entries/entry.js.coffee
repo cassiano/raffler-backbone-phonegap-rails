@@ -18,7 +18,6 @@ class App.Views.Entry extends Backbone.View
     @$('.winner').addClass 'highlight'
   
   render: ->
-    @el.id = 'entry_' + @model.get('id')
     @$el.html @template(entry: @model)
     @
 

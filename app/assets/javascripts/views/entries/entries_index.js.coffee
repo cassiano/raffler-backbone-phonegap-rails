@@ -27,7 +27,7 @@ class App.Views.EntriesIndex extends Backbone.View
     @render()
 
   render: ->
-    @$el.html @template
+    @$el.html @template()
     @collection.each @appendEntry
     @
 

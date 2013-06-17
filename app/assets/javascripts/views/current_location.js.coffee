@@ -12,6 +12,8 @@ class App.Views.CurrentLocation extends Backbone.View
     else
       navigator.geolocation.getCurrentPosition @renderWithPosition, @showPositionError
     
+    @
+    
   renderWithPosition: (position) ->
     @position = position
     

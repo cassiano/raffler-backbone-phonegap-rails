@@ -14,15 +14,15 @@
 
   <%= javascript_include_tag "jqm-config" %>
 
-  <!-- <script type="text/javascript" src="phonegap/cordova-2.7.0.js"></script>
-  <script type="text/javascript" src="phonegap/js/index.js"></script> -->
+  <script type="text/javascript" src="phonegap/cordova-2.7.0.js"></script>
+  <script type="text/javascript" src="phonegap/js/index.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
-      // cordovaApp.initialize(function() { 
+      cordovaApp.initialize(function() { 
         // Run the Backbone application when Cordova (PhoneGap) gets fully loaded.
         App.start();
-      // });
+      });
     });
   </script>
   

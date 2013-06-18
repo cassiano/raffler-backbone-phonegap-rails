@@ -23,18 +23,22 @@ class App.Views.EntriesIndex extends Backbone.View
     @collection.fetch reset: true
 
   render: ->
-    @$el.html @template()
+    @$el.html @template
     @collection.each @appendEntry
     @
 
   appendEntry: (entry) ->
-    view = new App.Views.Entry(model: entry)
+    view = new App.Views.Entry(model: entry, parentView: @)
     
     @views.push view
     
     @$('#entries').append view.render().el
     
-    try @$('ul#entries').listview 'refresh'
+    @refreshListView()
+
+  refreshListView: ->
+    try 
+      @$('#entries').listview 'refresh'
 
   createEntry: (event) ->
     event.preventDefault()
@@ -59,4 +63,3 @@ class App.Views.EntriesIndex extends Backbone.View
     view = _.find @views, (v) -> v.model.get('id') == entryId
     
     view.delete event
-    

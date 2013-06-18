@@ -4,7 +4,7 @@
 %div(data-role='content')
   %form#new_entry
     %input#new_entry_name(type='text' name='name')
-    %input(type='submit' value='Add')
+    %input(type='submit' value='Add' data-icon='add' data-theme='b' data-inline='true')
 
   %ul#entries(data-role='listview' data-inset='true' data-filter='true' data-filter-placeholder='Type in a name...')
 

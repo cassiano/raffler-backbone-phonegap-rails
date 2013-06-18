@@ -1,9 +1,9 @@
 %div
-  = @entry.get('name')
+	= @entry.get('name')
 
-  %a.delete_entry[@entry](href='#') delete
+	%a.delete_entry[@entry](href='#') delete
 
-  - if @entry.get('winner')
-    %span.winner WINNER
+	- if @entry.get('winner')
+		%span.winner WINNER
 
-%a{ href: "#entries/#{@entry.get('id')}" }
+-# %a{ href: '#entries/#{@entry.get('id')}' }

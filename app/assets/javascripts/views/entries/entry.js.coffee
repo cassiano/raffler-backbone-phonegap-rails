@@ -6,8 +6,10 @@ class App.Views.Entry extends Backbone.View
   # events: 
   #   'click a.delete_entry': 'delete'
   
-  initialize: ->
+  initialize: (options) ->
     _.bindAll @
+    
+    @parentView = options.parentView
     
     @listenTo @model, 'change:winner',  @render
     @listenTo @model, 'highlight',      @highlightWinner
@@ -16,6 +18,7 @@ class App.Views.Entry extends Backbone.View
   highlightWinner: ->
     $('.winner').removeClass 'highlight'
     @$('.winner').addClass 'highlight'
+    @parentView.refreshListView()
   
   render: ->
     @$el.html @template(entry: @model)

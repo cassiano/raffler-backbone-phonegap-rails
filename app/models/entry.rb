@@ -1,6 +1,5 @@
 class Entry < ActiveRecord::Base
   attr_accessible :name, :winner
-  
-  validates_presence_of :name
-  validates_uniqueness_of :name
+
+  validates :name, presence: true, length: { minimum: 2 }, uniqueness: { case_sensitive: false }, allow_nil: true
 end

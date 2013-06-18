@@ -49,8 +49,13 @@ class App.Views.EntriesIndex extends Backbone.View
     if response.status == 422
       errors = $.parseJSON(response.responseText).errors
       
+      $('#validation_error_messages').empty()
+      
       for attribute, messages of errors
-        alert "#{attribute} #{message}" for message in messages
+        for message in messages
+          $('#validation_error_messages').append "<li>#{attribute} #{message}</li>"
+        
+      $("#validation_errors").popup('open')
   
   delete_entry: (event) ->
     event.preventDefault()

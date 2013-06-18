@@ -8,7 +8,7 @@
 
   %ul#entries(data-role='listview' data-inset='true' data-filter='true' data-filter-placeholder='Type in a name...')
 
-  %button#draw Draw Winner
+  %button#draw(data-theme='e' data-inline='true') Draw Winner
 
 %div(data-role='footer')
   Copyright by Tagview Tecnologia

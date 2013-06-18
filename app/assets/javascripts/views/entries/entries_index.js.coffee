@@ -2,9 +2,9 @@ class App.Views.EntriesIndex extends Backbone.View
   template: JST['entries/index']
   
   events:
-    'submit form#new_entry':  'createEntry'
-    'click  button#draw':     'drawWinner'
-    'click a.delete_entry':   'delete_entry'
+    'submit form#new_entry': 'createEntry'
+    'click  button#draw':    'drawWinner'
+    'click a.delete_entry':  'delete_entry'
   
   drawWinner: (event) ->
     event.preventDefault()

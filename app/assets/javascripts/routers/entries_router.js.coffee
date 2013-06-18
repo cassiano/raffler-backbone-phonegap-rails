@@ -17,4 +17,4 @@ class App.Routers.Entries extends Backbone.Router
     page.render()
     $('body').append page.$el
     $.mobile.changePage page.$el, changeHash: false
-    window.setTimeout (-> page.$el.trigger('create')), 50
+    window.setTimeout (-> page.$el.trigger('create')), 100

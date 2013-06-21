@@ -42,3 +42,4 @@ gem 'jquery-rails'
 
 gem 'backbone-on-rails'
 gem 'thin'
+gem 'js-routes'

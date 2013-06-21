@@ -3,3 +3,6 @@ class App.Models.Entry extends Backbone.Model
     @set winner: true
     @save()
     @trigger 'highlight'
+    
+  # validate: (attrs, options) ->
+  #   "name is required" unless !!attrs.name

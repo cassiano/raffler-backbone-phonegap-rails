@@ -3,17 +3,17 @@ class App.Views.Entry extends Backbone.View
 
   tagName: 'li'
   
-  # events: 
-  #   'click a.delete_entry': 'delete'
+  events: 
+    'click a.delete_entry': 'delete'
   
   initialize: (options) ->
     _.bindAll @
     
     @parentView = options.parentView
     
-    @listenTo @model, 'change:winner',  @render
-    @listenTo @model, 'highlight',      @highlightWinner
-    @listenTo @model, 'remove',         @remove
+    @model.on 'change:winner',  @render
+    @model.on 'highlight',      @highlightWinner
+    @model.on 'remove',         @remove
     
   highlightWinner: ->
     $('.winner').removeClass 'highlight'
@@ -22,6 +22,7 @@ class App.Views.Entry extends Backbone.View
   
   render: ->
     @$el.html @template(entry: @model)
+    # @$('.delete_entry').trigger('start')
     @
 
   delete: (event) ->

@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require raffler
+//= require js-routes
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

@@ -1,7 +1,7 @@
 %div
 	= @entry.get('name')
 
-	%a.delete_entry[@entry](href='#') delete
+	%a.delete_entry[@entry](href='#' data-role="button" data-icon="delete" data-inline="true" data-mini="true" data-iconpos="notext") delete
 
 	- if @entry.get('winner')
 		%span.winner WINNER

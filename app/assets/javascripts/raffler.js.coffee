@@ -5,4 +5,4 @@ window.App =
   Routers: {}
   start: -> 
     new @Routers.Entries
-    Backbone.history.start() # pushState: true
+    Backbone.history.start()

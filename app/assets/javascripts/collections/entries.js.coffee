@@ -1,6 +1,6 @@
 class App.Collections.Entries extends Backbone.Collection
   model: App.Models.Entry
-  url: '/api/entries'
+  url: Routes.entries_path()
   
   drawWinner: ->
     winner = _.shuffle(@where(winner: null))[0]

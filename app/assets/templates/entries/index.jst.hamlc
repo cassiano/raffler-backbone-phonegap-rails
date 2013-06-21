@@ -13,10 +13,10 @@
 %div(data-role='footer')
   Copyright by Tagview Tecnologia
 
-%div(data-role="popup" id="validation_errors" class="ui-content" style="width: 400px;")
+%div(data-role="popup" id="validation_errors" class="ui-content")
   %div(data-role="header")
     %h1 Validation Errors
 
   %div(data-role="content")
     %ol#validation_error_messages
-    %a(href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext") Close
+    %a(href="#" data-rel="back" data-role="button" data-icon="back" data-iconpos="notext") Close

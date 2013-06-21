@@ -4,7 +4,6 @@ class App.Views.EntriesIndex extends Backbone.View
   events:
     'submit form#new_entry': 'createEntry'
     'click  button#draw':    'drawWinner'
-    'click a.delete_entry':  'delete_entry'
   
   drawWinner: (event) ->
     event.preventDefault()
@@ -13,12 +12,10 @@ class App.Views.EntriesIndex extends Backbone.View
   initialize: ->
     _.bindAll @
     
-    @views = []
-    
     @collection = new App.Collections.Entries
 
-    @listenTo @collection, 'reset', @render
-    @listenTo @collection, 'add',   @appendEntry
+    @collection.on 'reset', @render
+    @collection.on 'add',   @appendEntry
 
     @collection.fetch reset: true
 
@@ -29,8 +26,6 @@ class App.Views.EntriesIndex extends Backbone.View
 
   appendEntry: (entry) ->
     view = new App.Views.Entry(model: entry, parentView: @)
-    
-    @views.push view
     
     @$('#entries').append view.render().el
     
@@ -60,11 +55,3 @@ class App.Views.EntriesIndex extends Backbone.View
           $('#validation_error_messages').append "<li>#{attribute} #{message}</li>"
         
       $("#validation_errors").popup('open')
-  
-  delete_entry: (event) ->
-    event.preventDefault()
-    entryId = parseInt(/entry_(\d+)/.exec(event.target.id)[1])
-    
-    view = _.find @views, (v) -> v.model.get('id') == entryId
-    
-    view.delete event

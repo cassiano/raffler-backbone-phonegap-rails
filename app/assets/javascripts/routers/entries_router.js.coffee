@@ -1,7 +1,7 @@
 class App.Routers.Entries extends Backbone.Router
   routes:
-    '': 'index'
-    'entries/:id': 'show'
+    '':             'index'
+    'entries/:id':  'show'
                 
   initialize: ->
     _.bindAll @
@@ -14,7 +14,8 @@ class App.Routers.Entries extends Backbone.Router
   
   changePage: (page) ->
     page.$el.attr 'data-role', 'page'
+    page.$el.attr 'data-theme', 'b'
     page.render()
     $('body').append page.$el
     $.mobile.changePage page.$el, changeHash: false
-    window.setTimeout (-> page.$el.trigger('create')), 100
+    window.setTimeout (-> page.$el.trigger('create')), 200
